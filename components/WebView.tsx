@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet } from "react-native";
 import { Stack, useNavigation } from "expo-router";
 import { WebViewMessageEvent, WebViewNavigation } from "react-native-webview";
 import {
@@ -8,6 +8,7 @@ import {
   BridgeWebView,
 } from "@webview-bridge/react-native";
 import VectorIcons from "@expo/vector-icons/AntDesign";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { injectedJavaScript, bridgeMethod } from "./pocket";
 
 export default function Index({ url }: { url: string }) {
@@ -61,7 +62,7 @@ export default function Index({ url }: { url: string }) {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["left", "right", "bottom"]}>
       <Stack.Screen
         options={{
           title: "",

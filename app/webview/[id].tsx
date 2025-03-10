@@ -1,7 +1,13 @@
 import { useLocalSearchParams } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import WebView from "@/components/WebView";
 
 export default function Index() {
   const { url } = useLocalSearchParams();
-  return <WebView url={url?.toString()} />;
+  return (
+    <>
+      <StatusBar style="dark" />
+      <WebView url={url?.toString()} />
+    </>
+  );
 }
