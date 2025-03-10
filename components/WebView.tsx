@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Text, View, Button } from "react-native";
 import { Stack, useNavigation } from "expo-router";
 import { WebViewMessageEvent, WebViewNavigation } from "react-native-webview";
 import {
@@ -80,6 +80,17 @@ export default function Index({ url }: { url: string }) {
         injectedJavaScript={injectedJavaScript}
         ref={refWebView}
         onNavigationStateChange={onNavigationStateChange}
+        renderError={() => (
+          <View style={styles.error}>
+            <Text>页面加载出问题了～请点击重新加载～</Text>
+            <Button
+              title="重新加载"
+              onPress={() => {
+                refWebView.current?.reload();
+              }}
+            />
+          </View>
+        )}
       />
     </SafeAreaView>
   );
@@ -94,5 +105,9 @@ const styles = StyleSheet.create({
     fontSize: 24,
     color: "#000000",
     marginRight: 16,
+  },
+  error: {
+    flex: 1,
+    alignItems: "center",
   },
 });
